@@ -1,14 +1,10 @@
 <template>
-  <b-form-group
-    :id="`input-group-${name}`"
-    :label="label"
-    :description="description"
-  >
-    <b-form-input :state="stateError" :name="name" :id="`input-${name}`" @input="handleInput" :required="required" :type="type" :value="initialValue" :placeholder="placeholder"></b-form-input>
-    <b-form-invalid-feedback :state="stateError">
-      {{ messageError}}
-    </b-form-invalid-feedback>
-  </b-form-group>
+  <div>
+    <v-text-field :label="label" :name="name" :id="`input-${name}`" @input="handleInput" :required="required" :type="type" :value="initialValue" :placeholder="placeholder"></v-text-field>
+    <b-form-invalid-feedback v-if="stateError">
+        <span>{{ messageError}}</span>
+      </b-form-invalid-feedback>
+  </div>
 </template>
 
 <script>

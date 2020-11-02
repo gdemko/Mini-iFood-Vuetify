@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>{{title}}</h1>
-    <b-card>
+    <v-card>
       <slot></slot>
       <template v-slot:footer>
-        <b-button v-if="footer" variant="success" type="submit">Salvar</b-button>
-        <b-button v-if="footer" @click="clear()" variant="primary">Limpar</b-button>
-        <b-button :to="routeBack">Voltar</b-button>
+        <v-btn v-if="footer" variant="success" type="submit">Salvar</v-btn>
+        <v-btn v-if="footer" @click="clear()" variant="primary">Limpar</v-btn>
+        <v-btn :to="routeBack">Voltar</v-btn>
       </template>
-    </b-card>
+    </v-card>
   </div>
 </template>
 

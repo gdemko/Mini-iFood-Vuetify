@@ -4,54 +4,52 @@
       <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
     </div>
     <div v-else>
-      <b-card>
-        <b-row class="mb-4">
-          <b-col align-self="start">
+      <v-card>
+        <v-row class="mb-4">
+          <v-col align-self="start">
             <slot name="header"></slot>
             <span class="h2">{{title}}</span>
-          </b-col>
-        </b-row>
-        <b-table-simple
+          </v-col>
+        </v-row>
+        <v-simple-table
           :items="items"
           :fields="fields"
           responsive="sm"
         >
-          <b-thead >
-            <b-tr >
-              <b-th v-for="(field, index) in fields" :key="index" >{{field.label}}</b-th>
-              <b-th v-if="!removeOption" class="text-center" >Opções</b-th>
-            </b-tr>
-          </b-thead>
-          <b-tbody>
-            <b-tr v-if="items.length == 0" >
-              <b-th class="text-center" :colspan="fields.length+1">Nenhum resultado encontrado</b-th>
-            </b-tr>
-            <b-tr v-else v-for="(item, index) in items" :key="index" >
-              <b-th v-for="(it, index) in item" :key="index" >
+          <thead >
+            <tr >
+              <th v-for="(field, index) in fields" :key="index" >{{field.label}}</th>
+              <th v-if="!removeOption" class="text-center" >Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-if="items.length == 0" >
+              <th class="text-center" :colspan="fields.length+1">Nenhum resultado encontrado</th>
+            </tr>
+            <tr v-else v-for="(item, index) in items" :key="index" >
+              <th v-for="(it, index) in item" :key="index" >
                 {{it}}
-              </b-th>
-              <b-th v-if="customAction" class="text-center">
+              </th>
+              <th v-if="customAction" class="text-center">
                 <slot v-bind:index="index" name="action"></slot>
-              </b-th>
-              <b-th class="text-center" v-else>
+              </th>
+              <th class="text-center" v-else>
                 <b-button-group>
-                  <b-button v-if="show" :to="route +`/`+item.codigo" >Visualizar</b-button>
-                  <b-button v-if="edit" :to="route +`/edit/`+item.codigo" variant="primary">Editar</b-button>
-                  <b-button v-if="remove" @click="destroy(item.codigo)" variant="danger">Excluir</b-button>
+                  <v-btn v-if="show" :to="route +`/`+item.codigo" >Visualizar</v-btn>
+                  <v-btn v-if="edit" :to="route +`/edit/`+item.codigo" variant="primary">Editar</v-btn>
+                  <v-btn v-if="remove" @click="destroy(item.codigo)" variant="danger">Excluir</v-btn>
                 </b-button-group>
-              </b-th>
-            </b-tr>
-          </b-tbody>
-        </b-table-simple>
-        <template v-slot:footer>
-          <b-button v-if="buttomAdd" :to="routeAdd" variant="success">Adicionar</b-button>
-          <b-row v-else>
-            <b-col cols="12">
-              <slot name="footer"></slot>
-            </b-col>
-          </b-row>
-        </template>
-      </b-card>
+              </th>
+            </tr>
+          </tbody>
+        </v-simple-table>
+        <v-btn v-if="buttomAdd" :to="routeAdd" variant="success">Adicionar</v-btn>
+        <v-row v-else>
+          <v-col cols="12">
+            <slot name="footer"></slot>
+          </v-col>
+        </v-row>
+      </v-card>
     </div>
   </div>
 </template>

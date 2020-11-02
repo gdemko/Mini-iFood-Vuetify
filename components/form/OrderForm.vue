@@ -1,9 +1,9 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" >
+    <v-form @submit.prevent="onSubmit" >
       <card-order>
-        <b-row v-if="rebuild">
-          <b-col cols="7">
+        <v-row v-if="rebuild">
+          <v-col cols="7">
             <select-custom
               :state-error="error_message.product == '' ? null : false"
               :message-error="error_message.product"
@@ -13,8 +13,8 @@
               name="product"
               :options="products"
             />
-          </b-col>
-          <b-col cols="5">
+          </v-col>
+          <v-col cols="5">
             <input-custom
               :state-error="error_message.quantity_validation"
               :message-error="error_message.quantity"
@@ -24,46 +24,46 @@
               type="number"
               placeholder="0"
             />
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
         <div v-else class="text-center">
           <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
         </div>
         <template v-slot:footer>
-          <b-button @click="add()" variant="success"><b-icon-cart-plus-fill /> Adicionar Produto</b-button>
+          <v-btn @click="add()" > Adicionar Produto</v-btn>
         </template>
       </card-order>
       <card-order-products-selected :data="products_selected" @remove="removeItem">
         <template v-slot:footer>
-          <b-row>
-            <b-col cols="3">
-              <b-button :disabled="products_selected.length == 0" type="submit" variant="primary"><b-icon-cart-fill/> Finalizar Compra</b-button>
-            </b-col>
-            <b-col cols="2">
+          <v-row>
+            <v-col cols="3">
+              <v-btn :disabled="products_selected.length == 0" type="submit" ><b-icon-cart-fill/> Finalizar Compra</v-btn>
+            </v-col>
+            <v-col cols="2">
               <span class="h5">Totais:</span>
-            </b-col>
-            <b-col cols="2">
+            </v-col>
+            <v-col cols="2">
               <span class="h5">Qtd Total: {{quantity}}</span>
-            </b-col>
-            <b-col cols="3">
+            </v-col>
+            <v-col cols="3">
               <span class="h5">Valor Total: R$ {{total}}</span>
-            </b-col>
-            <b-col cols="2">
-              <b-button :disabled="products_selected.length == 0" @click="clear" variant="secondary"><b-icon-cart-dash-fill/> Limpar</b-button>
-            </b-col>
-          </b-row>
+            </v-col>
+            <v-col cols="2">
+              <v-btn :disabled="products_selected.length == 0" @click="clear"><b-icon-cart-dash-fill/> Limpar</v-btn>
+            </v-col>
+          </v-row>
         </template>
         <template v-slot:description>
-          <b-form-textarea
+          <v-textarea
             id="textarea"
             v-model="form.description"
             placeholder="Descrição..."
             rows="3"
             max-rows="6"
-          ></b-form-textarea>
+          ></v-textarea>
         </template>
       </card-order-products-selected>
-    </b-form>
+    </v-form>
   </div>
 </template>
 

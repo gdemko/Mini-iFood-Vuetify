@@ -1,16 +1,16 @@
 <template>
-  <b-card>
+  <v-card>
     <slot></slot>
     <table-custom :fields="fields" :items="data" title="Produtos Selecionados" customAction>
       <template v-slot:action="slotProps">
-        <b-button variant="danger" @click="destroy(slotProps.index)"><b-icon-trash-fill /> Excluir</b-button>
+        <v-button variant="danger" @click="destroy(slotProps.index)"><b-icon-trash-fill /> Excluir</v-button>
       </template>
       <template v-slot:footer>
         <slot name="footer"></slot>
       </template>
     </table-custom>
     <slot  name="description"></slot>
-  </b-card>
+  </v-card>
 </template>
 
 <script>
