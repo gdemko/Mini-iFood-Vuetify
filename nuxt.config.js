@@ -30,16 +30,53 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    ["@nuxtjs/dotenv"]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/axios
+
     '@nuxtjs/axios',
+    "@nuxtjs/auth-next"
+
   ],
 
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/login",
+            method: "post",
+            propertyName: "token"
+          },
+          logout: {
+            url: "/logout",
+            method: "post",
+            propertyName: "token"
+          },
+          user: {
+            url: "/user",
+            method: "get",
+            propertyName: false
+          }
+        },
+        tokenRequired: true,
+        tokenType: "bearer"
+      }
+    },
+    redirect: {
+      login: "/login",
+      logout: "/logout",
+      user: "/profile",
+      callback: "/login"
+    }
+  },
+
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: process.env.APP_URL
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
@@ -60,7 +97,14 @@ export default {
     }
   },
 
+  router: {
+    middleware: ["auth"]
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
+  build: {},
+
+  server: {
+    port: 8000, // default: 3000
   }
 }
