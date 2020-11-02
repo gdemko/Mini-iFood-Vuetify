@@ -26,9 +26,7 @@
             />
           </v-col>
         </v-row>
-        <div v-else class="text-center">
-          <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
-        </div>
+
         <template v-slot:footer>
           <v-btn @click="add()" > Adicionar Produto</v-btn>
         </template>
@@ -37,7 +35,7 @@
         <template v-slot:footer>
           <v-row>
             <v-col cols="3">
-              <v-btn :disabled="products_selected.length == 0" type="submit" ><b-icon-cart-fill/> Finalizar Compra</v-btn>
+              <v-btn :disabled="products_selected.length == 0" type="submit" >Finalizar Compra</v-btn>
             </v-col>
             <v-col cols="2">
               <span class="h5">Totais:</span>
@@ -49,7 +47,7 @@
               <span class="h5">Valor Total: R$ {{total}}</span>
             </v-col>
             <v-col cols="2">
-              <v-btn :disabled="products_selected.length == 0" @click="clear"><b-icon-cart-dash-fill/> Limpar</v-btn>
+              <v-btn :disabled="products_selected.length == 0" @click="clear"> Limpar</v-btn>
             </v-col>
           </v-row>
         </template>

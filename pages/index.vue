@@ -1,12 +1,12 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
-      <b-col>
+  <v-container class="bv-example-row">
+    <v-row>
+      <v-col>
         <loader v-if="loading" />
         <order-form @change="submit" title="Adicionar Pedido" :error-message="error_message"></order-form>
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

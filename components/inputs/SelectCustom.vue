@@ -1,14 +1,10 @@
 <template>
-  <b-form-group
-    :id="`input-group-${name}`"
-    :label="label"
-    :description="description"
-  >
+  <div>
     <multiselect :allow-empty="false" :close-on-select="true" :show-labels="false" label="title"  :placeholder="placeholder" @input="handleInput" v-model="initialValue" :options="options"></multiselect>
-    <b-form-invalid-feedback :state="stateError">
+    <span v-if="stateError">
       {{ messageError}}
-    </b-form-invalid-feedback>
-  </b-form-group>
+    </span>
+  </div>
 </template>
 
 <script>

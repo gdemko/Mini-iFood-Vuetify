@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center" v-if="loading">
-      <b-spinner style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
+      Carregando...
     </div>
     <div v-else>
       <v-card>
